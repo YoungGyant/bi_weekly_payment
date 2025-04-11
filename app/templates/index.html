@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Bi-Weekly Payment Tally</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Bi-Weekly Payment Tally</h1>
+        <form action="/calculate" method="post">
+            <label for="week1_hours">Enter hours worked for Week 1:</label>
+            <input type="number" step="0.01" name="week1_hours" required>
+
+            <label for="week2_hours">Enter hours worked for Week 2:</label>
+            <input type="number" step="0.01" name="week2_hours" required>
+
+            <label for="hourly_rate">Enter the hourly rate:</label>
+            <input type="number" step="0.01" name="hourly_rate" required>
+
+            <button type="submit">Calculate</button>
+        </form>
+
+        {% if total_hours is not none %}
+        <div class="results">
+            <h2>Results</h2>
+            <p>Total hours worked: {{ total_hours }}</p>
+            <p>Total pay: ${{ total_pay }}</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
